@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TitleText">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="DescriptionText">
+        <item name="android:textSize">@dimen/description_size</item>
+        <item name="android:textColor">@color/description_color</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

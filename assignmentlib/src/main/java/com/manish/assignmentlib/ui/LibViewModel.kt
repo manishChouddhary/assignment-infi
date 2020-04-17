@@ -7,27 +7,34 @@ import com.manish.assignmentlib.network.LibNetworkService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class LibViewModel(private val callback: LibCallback,
-                   private val libNetworkService: LibNetworkService) : BaseViewModel() {
-    fun getFactListLiveData() = factsListLiveData
+class LibViewModel(
+    private val callback: LibCallback,
+    private val libNetworkService: LibNetworkService
+) : BaseViewModel() {
+    fun getFactResponseLiveData() = factsResponseLiveData
+    fun getFactsTitleTextLiveData() = factsTitleLiveData
+    fun getLoadingStateLiveDate() = loadingStateLiveData
+
     fun getFactsUpdate() {
         loadingStateLiveData.postValue(true)
         val disposable = libNetworkService.getFacts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {  }
+            .doOnSubscribe { }
             .subscribe({
                 handleSuccessResponse(it)
-            },{
+            }, {
                 handleErrorResponse(it)
             })
         compositeDisposable.add(disposable)
     }
 
     private fun handleSuccessResponse(factsResponse: Facts?) {
+        loadingStateLiveData.postValue(false)
         factsResponse?.let {
-            factsTitleLiveData.postValue(it.title)
-            factsListLiveData.postValue(it.rows)
+            factsResponseLiveData.postValue(factsResponse)
+            factsListLiveData.postValue(factsResponseLiveData.value?.rows)
+            factsTitleLiveData.postValue(factsResponseLiveData.value?.title)
         }
     }
 

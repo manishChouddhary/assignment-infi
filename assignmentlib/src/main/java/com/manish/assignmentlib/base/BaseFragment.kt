@@ -1,6 +1,7 @@
 package com.manish.assignmentlib.base
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.manish.assignmentlib.LibCallback
@@ -27,5 +28,14 @@ open class BaseFragment: Fragment() {
             ViewModelProviderFactory(LibViewModel::class) {
                 LibViewModel(libCallback, libNetworkService)
             }).get(LibViewModel::class.java)
+    }
+
+    fun setUpToolbar(title: String?) {
+        (requireActivity() as AppCompatActivity).apply{
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setTitle(title)
+            }
+        }
     }
 }
