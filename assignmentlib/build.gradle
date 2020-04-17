@@ -5,8 +5,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
@@ -39,6 +37,12 @@ dependencies {
     //dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     testImplementation 'junit:junit:4.13'
 

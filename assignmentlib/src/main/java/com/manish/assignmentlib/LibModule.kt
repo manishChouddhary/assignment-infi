@@ -9,7 +9,7 @@ import com.manish.assignmentlib.ui.about.AboutFragment
 class LibModule {
     private lateinit var libComponent: LibComponent
 
-    private lateinit var libCallback: LibCallback
+    lateinit var libCallback: LibCallback
 
     init {
         initDI()
