@@ -8,8 +8,9 @@ import com.manish.assignmentlib.model.Facts
 import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel : ViewModel() {
-    val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    val factsTitleLiveData = MutableLiveData<String>()
-    val factsListLiveData = MutableLiveData<List<Fact>>()
-    val loadingStateLiveData = MutableLiveData<Boolean>()
+    protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
+    protected val factsResponseLiveData = MutableLiveData<Facts>()
+    protected val factsTitleLiveData = MutableLiveData<String>()
+    protected val factsListLiveData = MutableLiveData<List<Fact>>()
+    protected val loadingStateLiveData = MutableLiveData<Boolean>()
 }
