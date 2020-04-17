@@ -1,4 +1,4 @@
-package com.assignment.manish.assignment.extentions
+package com.manish.assignmentlib.extentions
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

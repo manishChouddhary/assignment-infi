@@ -2,7 +2,7 @@ package com.assignment.manish.assignment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.assignment.manish.assignment.extentions.replace
+import com.manish.assignmentlib.extentions.replace
 import com.manish.assignmentlib.LibModule
 
 class MainActivity : AppCompatActivity() {
