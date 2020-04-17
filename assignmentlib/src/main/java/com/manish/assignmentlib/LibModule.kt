@@ -7,7 +7,7 @@ import com.manish.assignmentlib.dependencyinjection.module.LibDiModule
 import com.manish.assignmentlib.ui.about.AboutFragment
 
 class LibModule {
-    private lateinit var libComponent: LibComponent
+    lateinit var libComponent: LibComponent
 
     lateinit var libCallback: LibCallback
 
