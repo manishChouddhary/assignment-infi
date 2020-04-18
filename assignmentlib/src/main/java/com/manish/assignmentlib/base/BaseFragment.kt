@@ -26,7 +26,7 @@ open class BaseFragment: Fragment() {
         libViewModel = ViewModelProvider(
             requireActivity(),
             ViewModelProviderFactory(LibViewModel::class) {
-                LibViewModel(libCallback, libNetworkService)
+                LibViewModel(libNetworkService)
             }).get(LibViewModel::class.java)
     }
 

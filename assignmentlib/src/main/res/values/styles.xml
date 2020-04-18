@@ -7,12 +7,15 @@
         <item name="android:textStyle">bold</item>
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginBottom">@dimen/text_margin</item>
     </style>
 
     <style name="DescriptionText">
         <item name="android:textSize">@dimen/description_size</item>
         <item name="android:textColor">@color/description_color</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginRight">@dimen/text_margin</item>
+        <item name="android:layout_marginEnd">@dimen/text_margin</item>
     </style>
 
 </resources>
