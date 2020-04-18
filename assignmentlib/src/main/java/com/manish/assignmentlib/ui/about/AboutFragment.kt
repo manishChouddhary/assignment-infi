@@ -14,10 +14,6 @@ import kotlinx.android.synthetic.main.fragment_facts_list.*
 
 class AboutFragment: BaseFragment() {
 
-    private lateinit var factsListObserver: Observer<List<Fact>>
-    private lateinit var titleObserver: Observer<String>
-    private lateinit var loadingObserver: Observer<Boolean>
-
     companion object {
         fun newInstance() = AboutFragment()
     }
@@ -37,6 +33,7 @@ class AboutFragment: BaseFragment() {
         observeLoadingState()
         observeTitle()
         observeFactResponse()
+        observeErrorState()
     }
 
     private fun observeFactResponse() {
@@ -63,6 +60,13 @@ class AboutFragment: BaseFragment() {
                 true -> { pvLoading?.visible() }
                 false -> { pvLoading?.gone() }
             }
+        })
+    }
+
+    private fun observeErrorState() {
+        libViewModel.getErrorState().observe(viewLifecycleOwner, Observer{
+            tvError.visible()
+            tvError.text = getString(R.string.error_message)
         })
     }
 }

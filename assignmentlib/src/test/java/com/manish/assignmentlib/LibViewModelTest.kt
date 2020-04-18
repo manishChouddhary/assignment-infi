@@ -45,7 +45,6 @@ class LibViewModelTest {
         `when`(libNetworkService.getFacts()).thenReturn(Single.error(Throwable()))
         viewModel.getFactsUpdate()
         assert(viewModel.getLoadingStateLiveDate().value == false)
-
     }
 
     @Test

@@ -8,7 +8,17 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 
-object MockDataProvider {
+object MockProvider {
+    fun getMockRetrofitClient(request: MockInterceptor.MockRequest): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://www.google.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(OkHttpClient.Builder()
+                .addInterceptor(MockInterceptor(request))
+                .build())
+            .build()
+    }
 
     const val page_title ="About Canada"
     const val imageHref = "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg"
@@ -19,7 +29,11 @@ object MockDataProvider {
         return Gson().fromJson(getFactResponse(), Facts::class.java)
     }
 
-    private fun getFactResponse(): String {
+    fun getMockErrorResponse(){
+        throw Exception()
+    }
+
+    fun getFactResponse(): String {
         return """{
 "title":"About Canada",
 "rows":[

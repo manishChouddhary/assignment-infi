@@ -13,9 +13,6 @@ import javax.inject.Inject
 
 open class BaseFragment: Fragment() {
     @Inject
-    lateinit var libCallback: LibCallback
-
-    @Inject
     lateinit var libNetworkService: LibNetworkService
 
     lateinit var libViewModel: LibViewModel

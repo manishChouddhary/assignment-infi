@@ -1,6 +1,7 @@
 package com.manish.assignmentlib.ui
 
 import com.manish.assignmentlib.base.BaseViewModel
+import com.manish.assignmentlib.error.LibException
 import com.manish.assignmentlib.model.Facts
 import com.manish.assignmentlib.network.LibNetworkService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,6 +13,7 @@ class LibViewModel(
     fun getFactResponseLiveData() = factsResponseLiveData
     fun getFactsTitleTextLiveData() = factsTitleLiveData
     fun getLoadingStateLiveDate() = loadingStateLiveData
+    fun getErrorState() = errorStateLiveData
 
     fun getFactsUpdate() {
         loadingStateLiveData.postValue(true)
@@ -38,5 +40,6 @@ class LibViewModel(
 
     private fun handleErrorResponse(it: Throwable?) {
         loadingStateLiveData.postValue(false)
+        errorStateLiveData.postValue(LibException(it?.message?: ""))
     }
 }
