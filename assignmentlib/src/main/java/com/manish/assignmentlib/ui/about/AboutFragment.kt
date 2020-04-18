@@ -40,11 +40,11 @@ class AboutFragment: BaseFragment() {
     }
 
     private fun observeFactResponse() {
-        libViewModel.getFactResponseLiveData().observe(viewLifecycleOwner,  Observer{
+        libViewModel.getFactResponseLiveData().observe(viewLifecycleOwner,  Observer{ it ->
             it?.let { facts ->
                 rvFactsList?.let{ view ->
                     view.visible()
-                    view.adapter = FactsListAdaptor().apply { factsList = facts.rows}
+                    view.adapter = FactsListAdaptor().apply { factsList = facts.rows.filter { it.title.isNullOrEmpty().not() }}
                 }
                 setUpToolbar(facts.title)
             }

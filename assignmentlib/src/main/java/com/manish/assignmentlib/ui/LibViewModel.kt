@@ -1,6 +1,5 @@
 package com.manish.assignmentlib.ui
 
-import com.manish.assignmentlib.LibCallback
 import com.manish.assignmentlib.base.BaseViewModel
 import com.manish.assignmentlib.model.Facts
 import com.manish.assignmentlib.network.LibNetworkService
@@ -8,7 +7,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class LibViewModel(
-    private val callback: LibCallback,
     private val libNetworkService: LibNetworkService
 ) : BaseViewModel() {
     fun getFactResponseLiveData() = factsResponseLiveData

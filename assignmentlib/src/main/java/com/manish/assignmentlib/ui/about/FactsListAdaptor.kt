@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.manish.assignmentlib.R
 import com.manish.assignmentlib.extentions.gone
+import com.manish.assignmentlib.extentions.visible
 import com.manish.assignmentlib.model.Fact
 import kotlinx.android.synthetic.main.fact_item.view.*
 
@@ -21,6 +22,9 @@ class FactsListAdaptor : RecyclerView.Adapter<FactsListAdaptor.FactsViewHolder>(
         var tvTitle: TextView = view.tvTitle
         var tvDescription: TextView = view.tvDescription
         var ivFactImage: ImageView = view.ivFactImage
+        init {
+            this.setIsRecyclable(false)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FactsViewHolder {
@@ -41,10 +45,12 @@ class FactsListAdaptor : RecyclerView.Adapter<FactsListAdaptor.FactsViewHolder>(
                 if (imageHref.isNullOrEmpty()) {
                     ivFactImage.gone()
                 } else{
+                    ivFactImage.visible()
                     Glide.with(holder.itemView.context)
                         .load(imageHref)
                         .error(R.drawable.error_place_holder)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.ic_placeholder)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .into(ivFactImage)
                 }
             }
