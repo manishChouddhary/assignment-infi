@@ -1,4 +1,4 @@
-package com.manish.assignmentlib
+package com.manish.assignmentlib.extentions
 
 import android.content.res.Resources
 import android.content.res.Resources.NotFoundException
@@ -10,24 +10,19 @@ import org.hamcrest.TypeSafeMatcher
 
 
 class RecyclerViewMatcher(val recyclerViewId: Int) {
-
-    fun atPosition(position: Int): Matcher<View?>? {
-        return atPositionOnView(position, -1)
-    }
-
     fun atPositionOnView(position: Int, targetViewId: Int): Matcher<View?>? {
         return object : TypeSafeMatcher<View?>() {
             var resources: Resources? = null
             var childView: View? = null
             override fun describeTo(description: Description?) {
-                var idDescription = Integer.toString(recyclerViewId)
+                var idDescription = recyclerViewId.toString()
                 if (resources != null) {
                     idDescription = try {
-                        resources?.getResourceName(recyclerViewId)
+                        resources?.getResourceName(recyclerViewId).toString()
                     } catch (var4: NotFoundException) {
                         String.format(
                             "%s (resource name not found)",
-                            *arrayOf<Any?>(Integer.valueOf(recyclerViewId))
+                            Integer.valueOf(recyclerViewId)
                         )
                     }
                 }
@@ -39,7 +34,7 @@ class RecyclerViewMatcher(val recyclerViewId: Int) {
                 if (childView == null) {
                     val recyclerView =
                         view?.rootView?.findViewById(recyclerViewId) as RecyclerView
-                    childView = if (recyclerView != null && recyclerView.id == recyclerViewId) {
+                    childView = if (recyclerView.id == recyclerViewId) {
                         recyclerView.findViewHolderForAdapterPosition(position)!!.itemView
                     } else {
                         return false

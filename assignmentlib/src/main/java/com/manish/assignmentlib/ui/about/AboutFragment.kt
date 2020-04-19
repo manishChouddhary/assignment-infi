@@ -34,11 +34,21 @@ class AboutFragment: BaseFragment() {
         observeTitle()
         observeFactResponse()
         observeErrorState()
+        setupRefresh()
+    }
+
+    private fun setupRefresh() {
+        srlFactsList?.apply {
+            setOnRefreshListener {
+                libViewModel.getFactsUpdate()
+            }
+        }
     }
 
     private fun observeFactResponse() {
         libViewModel.getFactResponseLiveData().observe(viewLifecycleOwner,  Observer{ it ->
             it?.let { facts ->
+                srlFactsList.isRefreshing = false
                 rvFactsList?.let{ view ->
                     view.visible()
                     view.adapter = FactsListAdaptor().apply { factsList = facts.rows.filter { it.title.isNullOrEmpty().not() }}
